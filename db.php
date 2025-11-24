@@ -11,7 +11,7 @@ function execute($query) {
 
         $dsn = "mysql:host=$hostname;dbname=$database";
         $pdo = new PDO($dsn, $username, $password);
-        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     return $pdo->query($query);
