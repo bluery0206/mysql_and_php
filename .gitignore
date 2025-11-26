@@ -2,3 +2,4 @@ vendor
 .env
 composer.json
 composer.lock
+bootstrap.php
