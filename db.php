@@ -8,7 +8,7 @@ function connect() {
         $hostname = "localhost";
         $username = "root";
         $password = "";
-        $database = "boilerplate";
+        $database = "hilario";
 
         $dsn = "mysql:host=$hostname;dbname=$database";
         

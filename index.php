@@ -1,56 +1,24 @@
 <?php
 
-include __DIR__ . '/db.php';
+include 'db.php';
+
+if ($_POST) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $query = "INSERT INTO users (username, password) VALUES (?, ?)";
+    $values = [$username, $password];
+    execute($query, $values);
+}
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MySQL + PHP</title>
-</head>
-<body>
 
+<form method="POST">
+    Username
+    <input type="text" name="username">
 
+    Password
+    <input type="text" name="password">
 
-    <div>
-        <h2>Fetching a single row</h2>
-
-        <?php 
-            $query = "SELECT * FROM users WHERE username = ?";
-            $values = ['aori'];
-            $user = execute($query, $values)->fetch();
-        ?>
-
-        <h3><?= $user['username'] ?></h3>
-
-    </div>
-
-
-
-    <hr>
-
-
-
-    <div>
-        <h2>Fetching multiple rows</h2>
-
-        <?php 
-            $query = "SELECT * FROM users WHERE isAdmin = ?";
-            $values = ['0'];
-            $user_list = execute($query, $values)->fetchAll();
-        ?>
-
-        <ul>
-            <?php foreach ($user_list as $user): ?>
-                <li><?= $user['username'] ?></li>
-            <?php endforeach ?>
-        </ul>
-    </div>
-    
-    
-    
-    
-</body>
-</html>
+    <button type="submit">Register</button>
+</form>
