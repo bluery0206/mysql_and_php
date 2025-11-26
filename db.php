@@ -1,6 +1,6 @@
 <?php
 
-function execute($query) {
+function connect() {
     static $pdo = null;
 
     if ($pdo === null) {
@@ -14,5 +14,12 @@ function execute($query) {
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    return $pdo->query($query);
+    return $pdo;
+}
+
+function execute($query, $values=[]) {
+    $pdo = connect();
+    $stmt = $pdo->prepare($query);
+    $stmt->execute($values);
+    return $stmt;
 }
